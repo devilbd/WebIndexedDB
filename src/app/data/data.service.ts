@@ -18,8 +18,7 @@ export class IndexedDBService {
                 if (!db.objectStoreNames.contains('Users')) {
                     const objectStore = db.createObjectStore('Users', { keyPath: 'id', autoIncrement: true });
                     objectStore.createIndex('id', 'id', { unique: true });
-                    objectStore.createIndex('name', 'name', { unique: true });
-                    objectStore.createIndex('email', 'email', { unique: true });
+                    objectStore.createIndex('username', 'username', { unique: true });
                 }
 
                 if (!db.objectStoreNames.contains('Products')) {
@@ -165,7 +164,7 @@ export class IndexedDBService {
         return new Promise(async (resolve, reject) => {
             const transaction = db.transaction('Users', 'readwrite');
             const store = transaction.objectStore('Users');
-            const request = store.add({ name: user.name, email: user.email });
+            const request = store.add({ name: user.username });
 
             request.onsuccess = () => resolve(request.result as number);
             request.onerror = () => reject(request.error);
@@ -196,13 +195,13 @@ export class IndexedDBService {
         });
     }
 
-    async getUser(email: string): Promise<User | undefined> {
+    async getUser(username: string): Promise<User | undefined> {
         const db = await this.openDB();
         return new Promise((resolve, reject) => {
             const transaction = db.transaction('Users', 'readonly');
             const store = transaction.objectStore('Users');
-            const index = store.index('email');
-            const request = index.get(email);
+            const index = store.index('username');
+            const request = index.get(username);
 
             request.onsuccess = () => resolve(request.result as User);
             request.onerror = () => reject(request.error);

@@ -38,14 +38,14 @@ export class LoginComponent implements OnInit {
         let localStorageUser: any = localStorage.getItem('user');
         if (localStorageUser) {
             localStorageUser = JSON.parse(localStorageUser) as User;
-            const userExist = await this.dataService.getUser(localStorageUser.email);
+            const userExist = await this.dataService.getUser(localStorageUser.username);
             if (userExist) {
                 this.user = userExist as User;
                 this.loggedIn.emit(this.user);
             }
         } else {
             await this.addUserIfNotExists();
-            const userExists = await this.dataService.getUser(this.user.email);
+            const userExists = await this.dataService.getUser(this.user.username);
             if (userExists) {
                 localStorage.setItem('user', JSON.stringify(userExists));
                 this.user = userExists as User;
@@ -55,11 +55,11 @@ export class LoginComponent implements OnInit {
     }
 
     async addUserIfNotExists() {
-        const user = await this.dataService.getUser(this.user.email);
+        const user = await this.dataService.getUser(this.user.username);
         console.log('User:', user);
         if (!user) {
             await this.dataService.addUser(this.user);
-            const createdUser = await this.dataService.getUser(this.user.email);
+            const createdUser = await this.dataService.getUser(this.user.username);
             console.log(createdUser);
             if (createdUser) {
                 this.user = createdUser as User;

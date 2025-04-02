@@ -12,8 +12,7 @@
                         [open]="viewModel.isShoppingCartOpen">
                     </app-shopping-cart>
                     <div class="header-info">
-                        <label>{{ viewModel.user.name }}</label>
-                        <label>{{ viewModel.user.email }}</label>
+                        <label>{{ viewModel.user.username }}</label>
                     </div>
                     <div class="header-actions">
                         <button (click)="toggleShoppingCart()">

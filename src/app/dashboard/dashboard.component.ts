@@ -25,8 +25,7 @@ export class DashboardComponent implements OnInit {
         isShoppingCartOpen: false,
         currentFlowStep: 1,
         user: {
-            name: '',
-            email: '',
+            username: '',
         } as User,
         total: 0,
         isLoggedIn: false,
@@ -56,7 +55,7 @@ export class DashboardComponent implements OnInit {
     }
 
     get loggedUser() {
-        return this.viewModel.user.name && this.viewModel.user.email ? this.viewModel.user : null;
+        return this.viewModel.user.username ? this.viewModel.user : null;
     }
 
     async onAddToCart(product: Product) {

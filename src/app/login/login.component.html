@@ -2,11 +2,7 @@
     <h2>Login</h2>
     <div class="input-group">
         <label>Please enter your username:</label>
-        <input type="text" [(ngModel)]="user.name" required="true" placeholder="Enter your name" />
-    </div>
-    <div class="input-group">
-        <label>Please enter your email:</label>
-        <input type="text" [(ngModel)]="user.email" required="true" placeholder="Enter your email address" />
+        <input type="text" [(ngModel)]="user.username" required="true" placeholder="Enter your name" />
     </div>
     <div>
         <button (click)="login()">Go to dashboard</button>

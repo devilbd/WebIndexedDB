@@ -33,8 +33,10 @@ export class DashboardComponent implements OnInit {
 
     constructor(private dataService: IndexedDBService, private changeDetectorRef: ChangeDetectorRef) {}
 
-    async ngOnInit() {
-        this.viewModel.products = await this.dataService.getAllProducts();
+    ngOnInit() {
+        setTimeout(async () =>{
+            this.viewModel.products = await this.dataService.getAllProducts();
+        }, 500);
     }
 
     async onLogin(user: User) {

@@ -23,12 +23,8 @@ export class DataFeederService {
             { id: 3, name: 'Product 3', price: 30 },
         ] as Product[];
 
-        products.forEach(product => {
-            this.dataService.addProduct(product).then(() => {
-                console.log(`Product ${product.name} added successfully.`);
-            }).catch(error => {
-                console.error(`Error adding product ${product.name}:`, error);
-            });
+        products.forEach(async product => {
+            await this.dataService.addProduct(product);
         });
     }
 }

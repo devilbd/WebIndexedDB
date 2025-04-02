@@ -1,0 +1,14 @@
+<div class="login-root">
+    <h2>Login</h2>
+    <div class="input-group">
+        <label>Please enter your username:</label>
+        <input type="text" [(ngModel)]="user.name" required="true" placeholder="Enter your name" />
+    </div>
+    <div class="input-group">
+        <label>Please enter your email:</label>
+        <input type="text" [(ngModel)]="user.email" required="true" placeholder="Enter your email address" />
+    </div>
+    <div>
+        <button (click)="login()">Go to dashboard</button>
+    </div>
+</div>

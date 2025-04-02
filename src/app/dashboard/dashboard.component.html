@@ -1,0 +1,40 @@
+<div class="dashboard-root">
+
+    <div>
+        @if(viewModel.isLoggedIn) {
+            <div class="dashboard-header">
+                @if(viewModel.isLoggedIn) {
+                    <app-shopping-cart
+                        #appShoppingCart
+                        [shoppingCart]="viewModel.shoppingCart"
+                        [products]="viewModel.products"
+                        [user]="viewModel.user"
+                        [open]="viewModel.isShoppingCartOpen">
+                    </app-shopping-cart>
+                    <div class="header-info">
+                        <label>{{ viewModel.user.name }}</label>
+                        <label>{{ viewModel.user.email }}</label>
+                    </div>
+                    <div class="header-actions">
+                        <button (click)="toggleShoppingCart()">
+                            <img class="shopping-cart" src="assets/shopping-cart.png" />
+                        </button>
+                        <button (click)="onLogout()">
+                            Logout
+                        </button>
+                    </div>
+                }
+            </div>
+            <app-products-list
+                [products]="viewModel.products"
+                (addToCart)="onAddToCart($event)">
+            </app-products-list>
+        } @else {
+            <app-login
+                [user]="viewModel.user"
+                [shoppingCart]="viewModel.shoppingCart"
+                (loggedIn)="onLogin($event)">
+            </app-login>
+        }
+    </div>
+</div>

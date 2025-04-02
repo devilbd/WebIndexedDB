@@ -1,0 +1,23 @@
+<div class="shopping-cart-root" [style.visibility]="open ? 'visible' : 'hidden'">
+    <div>
+        <h1>Current user: {{ user.name }} - {{ user.email }}</h1>
+        @if(total > 0){
+            <div>
+                <h2>Total:</h2>
+                <h3>{{ total | currency }}</h3>
+            </div>
+        } @else {
+            <div>
+                <h3>Shopping cart is empty.</h3>
+            </div>
+        }
+    </div>
+    @if(shoppingCart && shoppingCart.productIds) {
+        @for (productId of shoppingCart.productIds; track $index) {
+            <div>
+                <h3>{{ getProductById(productId)?.name }}</h3>
+                <button (click)="removeFromCart(getProductById(productId))">Remove from cart</button>
+            </div>
+        }
+    }
+</div>

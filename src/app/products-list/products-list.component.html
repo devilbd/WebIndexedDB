@@ -1,0 +1,13 @@
+<div class="product-list-root">
+    <h2>Products:</h2>
+    @if(products) {
+        @for (product of products; track $index) {
+            <div class="product-item">
+                <div class="thumbnail">
+                </div>
+                <label>{{ product.name }} - {{ product.price | currency }}</label>
+                <button (click)="onAddToCart(product)">Add to cart</button>
+            </div>
+        }
+    }
+</div>

@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
     @Input()
     user!: User;
 
+    @Output()
+    userChange = new EventEmitter<User>();
+
     @Input()
     shoppingCart!: ShoppingCart;
 
@@ -32,6 +35,15 @@ export class LoginComponent implements OnInit {
             this.user = JSON.parse(user) as User;
             this.loggedIn.emit(this.user);
         }
+    }
+
+    generateRandomUser() {
+        const timestamp = new Date().getTime(); // Get the current time in milliseconds
+        const baseString = timestamp.toString(36); // Convert timestamp to base-36 (alphanumeric)
+        const randomValue = Math.random().toString(36).substring(2, 8); // Generate a random alphanumeric component
+        const randomString = `${baseString}${randomValue}`; // Combine timestamp-based string with the random value
+        this.user.username = randomString;
+        this.userChange.emit(this.user);
     }
 
     async login() {

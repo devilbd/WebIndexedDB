@@ -2,9 +2,10 @@
     <h2>Login</h2>
     <div class="input-group">
         <label>Please enter your username:</label>
-        <input type="text" [(ngModel)]="user.username" required="true" placeholder="Enter your name" />
+        <input type="text" [(ngModel)]="user.username" required="true" placeholder="Enter your username" />
     </div>
     <div>
-        <button (click)="login()">Go to dashboard</button>
+        <button (click)="generateRandomUser()">Generate random username</button>
+        <button (click)="login()">Login</button>
     </div>
 </div>

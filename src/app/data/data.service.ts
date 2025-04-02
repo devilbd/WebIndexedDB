@@ -164,7 +164,7 @@ export class IndexedDBService {
         return new Promise(async (resolve, reject) => {
             const transaction = db.transaction('Users', 'readwrite');
             const store = transaction.objectStore('Users');
-            const request = store.add({ name: user.username });
+            const request = store.add({ username: user.username });
 
             request.onsuccess = () => resolve(request.result as number);
             request.onerror = () => reject(request.error);

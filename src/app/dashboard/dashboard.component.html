@@ -30,7 +30,7 @@
             </app-products-list>
         } @else {
             <app-login
-                [user]="viewModel.user"
+                [(user)]="viewModel.user"
                 [shoppingCart]="viewModel.shoppingCart"
                 (loggedIn)="onLogin($event)">
             </app-login>
